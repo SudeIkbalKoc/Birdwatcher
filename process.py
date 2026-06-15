@@ -25,7 +25,7 @@ class Process():
         username = "BENUTZERNAME" # Benutzername des Mail-Kontos
         password = "PASSWORT" # Passwort des Mail-Kontos
 
-        pTransfer = '/home/pi/Desktop/Birdwatcher/transfer' # Ordnerpfad für den Transferordner
+        pTransfer = '/home/birdwatcher/Desktop/Birdwatcher/transfer' # Ordnerpfad für den Transferordner
         logging.basicConfig(filename="process_log.txt", format="%(asctime)s %(message)s") # Erstellung und Konfiguration der Log-Datei
 
         #folder.delFolder('/home/pi/Desktop/Birdwatcher')
