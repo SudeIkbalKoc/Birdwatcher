@@ -15,7 +15,7 @@ class Process():
         path2 = '/home/birdwatcher/Desktop/Birdwatcher/%s' % year # Ordnerpfad 2
         path3 = '/home/birdwatcher/Desktop/Birdwatcher/%s/%s' % (year, month) # Ordnerpfad 3
         pFile = path3 + '/image_' + time + '.jpg' # Dateipfad für die Aufnahme
-        filename = time # Dateiname für den Mail-Versand
+        filename = time + '.zip'  # Dateiname für den Mail-Versand
 
         pSubject = 'Vogelbeobachtung ' + time # Betreff der E-Mail
         pFrom = "MAILADRESSE-VO" # Absenderadresse der Mail [zu ergänzen]
