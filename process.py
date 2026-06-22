@@ -11,21 +11,28 @@ class Process():
         time = datetime.now().strftime("%d-%m-%Y_%H-%M-%S") # Erstellung der aktuell Uhrzeit im Format "03-10-2022_20-13-23"
         year = datetime.now().strftime("%Y") # Erstellung des Jahres als Text
         month = datetime.now().strftime("%m-%Y") # Erstellung des Monates und Jahres als Text
-        path1 = '/home/birdwatcher/Desktop/Birdwatcher' # Ordnerpfad 1
-        path2 = '/home/birdwatcher/Desktop/Birdwatcher/%s' % year # Ordnerpfad 2
-        path3 = '/home/birdwatcher/Desktop/Birdwatcher/%s/%s' % (year, month) # Ordnerpfad 3
+        path1 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder' # Ordnerpfad 1 [zu ergänzen]
+        path2 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s' % year # Ordnerpfad 2 [zu ergänzen]
+        path3 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s/%s' % (year, month) # Ordnerpfad 3 [zu ergänzen]
         pFile = path3 + '/image_' + time + '.jpg' # Dateipfad für die Aufnahme
-        filename = time + '.zip'  # Dateiname für den Mail-Versand
+        filename = time + '.zip' # Dateiname für den Mail-Versand
 
         pSubject = 'Vogelbeobachtung ' + time # Betreff der E-Mail
-        pFrom = "MAILADRESSE-VO" # Absenderadresse der Mail [zu ergänzen]
-        pTo = "MAILADRESSE-ZU" # Empfaengeradresse [zu ergänzen]
-        pContent = "MAILINHALT" # E-Mailtext [zu ergänzen]
-        host = "SMTP-URL" # SMTP-Url des Mailproviders [zu ergänzen]
-        username = "BENUTZERNAME" # Benutzername des Mail-Kontos
-        password = "PASSWORT" # Passwort des Mail-Kontos
+        pFrom = 'birdwatcher@smart-mail.de' # Absenderadresse der Mail [zu ergänzen]
+        pTo = 'birdwatcher.ium@hsbi.de' # Empfaengeradresse [zu ergänzen]
+        pContent = 'Foto aus dem Nistkasten' # E-Mailtext [zu ergänzen]
+        host = 'smtp.smart-mail.de' # SMTP-Url des Mailproviders [zu ergänzen]
+        username = 'birdwatcher@smart-mail.de' # Benutzername des Mail-Kontos
 
-        pTransfer = '/home/birdwatcher/Desktop/Birdwatcher/transfer' # Ordnerpfad für den Transferordner
+        # Passwort aus Textdatei lesen
+        try:
+            with open('/home/birdwatcher/Birdwatcher/Birdwatcher/mail_password.txt', 'r') as f:
+                password = f.read().strip()
+        except Exception as e:
+            logging.error("Passwort-Datei konnte nicht gelesen werden: " + str(e))
+            password = ""
+        
+        pTransfer = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/transfer' # Ordnerpfad für den Transferordner
         logging.basicConfig(filename="process_log.txt", format="%(asctime)s %(message)s") # Erstellung und Konfiguration der Log-Datei
 
         #folder.delFolder('/home/pi/Desktop/Birdwatcher')
@@ -41,11 +48,3 @@ class Process():
         transfer.sendMail(pSubject, pFrom, pTo, pContent, pTransfer, filename, host, username, password) # Versand der Datei per E-Mail in einer .zip-Datei
 
 Process() # Klasse instanziieren und __init__ ausführen
-
-            
-        
-
-        
-        
-
-
